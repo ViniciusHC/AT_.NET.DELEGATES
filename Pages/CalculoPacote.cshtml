@@ -1,0 +1,36 @@
+﻿@page
+@model global::Delegate.Pages.CalculoPacoteModel
+@{
+	ViewData["Title"] = "Cálculo (Delegates e Func)";
+}
+
+<h2>Cálculo simples</h2>
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="PrecoDiaria" class="form-label"></label>
+        <input asp-for="PrecoDiaria" class="form-control" type="number" step="0.01" min="0" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Diarias" class="form-label"></label>
+        <input asp-for="Diarias" class="form-control" type="number" min="1" value="1" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Calcular</button>
+</form>
+
+@if (Model.PrecoComDesconto.HasValue)
+{
+    <div class="alert alert-success mt-3">
+        <strong>Diária com 10% de desconto:</strong>
+        @Model.PrecoComDesconto.Value.ToString("C")
+    </div>
+}
+
+@if (Model.Total.HasValue)
+{
+    <div class="alert alert-info mt-2">
+        <strong>Valor Total sem Desconto:</strong>
+        @Model.Total.Value.ToString("C")
+    </div>
+}
